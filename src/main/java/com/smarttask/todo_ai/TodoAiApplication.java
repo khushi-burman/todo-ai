@@ -2,12 +2,19 @@ package com.smarttask.todo_ai;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
+@RestController
 public class TodoAiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TodoAiApplication.class, args);
-	}
 
+        SpringApplication.run(TodoAiApplication.class, args);
+	}
+    @GetMapping
+    public String helloWorld(){
+        return "Hello World Spring Boot!";
+    }
 }
