@@ -5,6 +5,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/tasks")
+@CrossOrigin
 public class TaskController {
 
     private final TaskRepository taskRepository;
