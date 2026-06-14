@@ -23,4 +23,25 @@ public class TaskController {
     public Task createTask(@RequestBody Task task) {
         return taskRepository.save(task);
     }
+    // 1. UPDATE TASK STATUS (Toggle between completed and pending)
+    @PutMapping("/{id}")
+    public Task updateTaskStatus(@PathVariable Long id) {
+        Task task = taskRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Task not found with id: " + id));
+
+        // Toggle the completion status flip-flop style
+        task.setCompleted(!task.isCompleted());
+        return taskRepository.save(task);
+    }
+
+    // 2. DELETE TASK FROM DATABASE
+    @DeleteMapping("/{id}")
+    public String deleteTask(@PathVariable Long id) {
+        Task task = taskRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Task not found with id: " + id));
+
+        taskRepository.delete(task);
+        return "Task with ID " + id + " has been successfully deleted.";
+    }
+
 }
